@@ -98,7 +98,7 @@
       "permalink": "https://www.instagram.com/p/DfcdiOajHn4/"
     },
     "02-musculo": {
-      "state": "processing",
+      "state": "published",
       "content_sha256": "b267a865a54835d4ba50f3ec4a287259687e6cbd689d13840c8a25f5d5963ac2",
       "operations": {
         "child_01": {
@@ -215,7 +215,11 @@
         "17958014589272549",
         "17958014616272549"
       ],
-      "carousel_id": "17958014634272549"
+      "carousel_id": "17958014634272549",
+      "media_id": "18071144504604046",
+      "published_at": "2026-11-07T19:05:29.465726+00:00",
+      "publication_confirmation": "media_publish_returned_id",
+      "readback_verified": false
     }
   }
 }
