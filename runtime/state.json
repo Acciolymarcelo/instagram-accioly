@@ -102,8 +102,11 @@
       "content_sha256": "b267a865a54835d4ba50f3ec4a287259687e6cbd689d13840c8a25f5d5963ac2",
       "operations": {
         "child_01": {
-          "status": "pending",
-          "started_at": "2026-11-07T19:03:23.615191+00:00"
+          "status": "done",
+          "completed_at": "2026-11-07T19:03:28.196655+00:00",
+          "result": {
+            "id": "17958014367272549"
+          }
         }
       },
       "started_at": "2026-11-07T19:03:21.962135+00:00"
