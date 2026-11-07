@@ -96,6 +96,12 @@
       "publication_confirmation": "media_publish_returned_id",
       "readback_verified": true,
       "permalink": "https://www.instagram.com/p/DfcdiOajHn4/"
+    },
+    "02-musculo": {
+      "state": "processing",
+      "content_sha256": "b267a865a54835d4ba50f3ec4a287259687e6cbd689d13840c8a25f5d5963ac2",
+      "operations": {},
+      "started_at": "2026-11-07T19:03:21.962135+00:00"
     }
   }
 }
