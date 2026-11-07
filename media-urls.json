@@ -1,315 +1,315 @@
 {
   "schema_version": 1,
-  "status": "missing_public_image_urls",
+  "status": "configured_pending_live_download_verification",
   "pieces": {
     "01-cabelo": [
       {
         "number": 1,
         "sha256": "9e36c40f01334f2cdc568b2f0f9cb901d74e64cdddf340c050b3c95f848ae9ed",
-        "url": null
+        "url": "https://raw.githubusercontent.com/Acciolymarcelo/instagram-accioly/7a91800c61c148018e5d9a65ed01ee83dd53bf1a/media/01-cabelo/slide_01.jpg"
       },
       {
         "number": 2,
         "sha256": "6269a7b11812c880af189f86df11d8066f67bbb9ab920593e4d4c8d87523b89b",
-        "url": null
+        "url": "https://raw.githubusercontent.com/Acciolymarcelo/instagram-accioly/7a91800c61c148018e5d9a65ed01ee83dd53bf1a/media/01-cabelo/slide_02.jpg"
       },
       {
         "number": 3,
         "sha256": "c89a9b363a37d4aee4c5384594b423f82b5e0f75be8060d6e91d1649c18c28e9",
-        "url": null
+        "url": "https://raw.githubusercontent.com/Acciolymarcelo/instagram-accioly/7a91800c61c148018e5d9a65ed01ee83dd53bf1a/media/01-cabelo/slide_03.jpg"
       },
       {
         "number": 4,
         "sha256": "93738ee3740f985c36b76708231ce465f85f36e8f9df3227d0661564d9098be9",
-        "url": null
+        "url": "https://raw.githubusercontent.com/Acciolymarcelo/instagram-accioly/7a91800c61c148018e5d9a65ed01ee83dd53bf1a/media/01-cabelo/slide_04.jpg"
       },
       {
         "number": 5,
         "sha256": "5d1c0bf966350d7d4151fb618cf5b7f5f9632b942e813bd760ba106f3f85fd8d",
-        "url": null
+        "url": "https://raw.githubusercontent.com/Acciolymarcelo/instagram-accioly/7a91800c61c148018e5d9a65ed01ee83dd53bf1a/media/01-cabelo/slide_05.jpg"
       },
       {
         "number": 6,
         "sha256": "12f63d828a45d7c243db9c423396d9743fb4d6e5cda56fd32324ba5bdaf08bcd",
-        "url": null
+        "url": "https://raw.githubusercontent.com/Acciolymarcelo/instagram-accioly/7a91800c61c148018e5d9a65ed01ee83dd53bf1a/media/01-cabelo/slide_06.jpg"
       },
       {
         "number": 7,
         "sha256": "cbb5ab6f4f1121cb84159cf076c5f58cee7f90367c1a2bca4fbca0a30033273d",
-        "url": null
+        "url": "https://raw.githubusercontent.com/Acciolymarcelo/instagram-accioly/7a91800c61c148018e5d9a65ed01ee83dd53bf1a/media/01-cabelo/slide_07.jpg"
       },
       {
         "number": 8,
         "sha256": "49e81e1dbc2456a65b67395099945dedd09094af96d16e0416486b023fefaa31",
-        "url": null
+        "url": "https://raw.githubusercontent.com/Acciolymarcelo/instagram-accioly/7a91800c61c148018e5d9a65ed01ee83dd53bf1a/media/01-cabelo/slide_08.jpg"
       }
     ],
     "02-musculo": [
       {
         "number": 1,
         "sha256": "028af034983ca4493f0d98483dc393f4e4b4812ce4e51e4e493d202fa00beb99",
-        "url": null
+        "url": "https://raw.githubusercontent.com/Acciolymarcelo/instagram-accioly/7a91800c61c148018e5d9a65ed01ee83dd53bf1a/media/02-musculo/slide_01.jpg"
       },
       {
         "number": 2,
         "sha256": "0c8a3a66019b229a23447c4067fb606422b69fda8cdedda3a67d6b16c9fb7672",
-        "url": null
+        "url": "https://raw.githubusercontent.com/Acciolymarcelo/instagram-accioly/7a91800c61c148018e5d9a65ed01ee83dd53bf1a/media/02-musculo/slide_02.jpg"
       },
       {
         "number": 3,
         "sha256": "f05408ea8accd7d0899f3715834d4eba8e1a214915e85fd5890ebe9d2e2f963e",
-        "url": null
+        "url": "https://raw.githubusercontent.com/Acciolymarcelo/instagram-accioly/7a91800c61c148018e5d9a65ed01ee83dd53bf1a/media/02-musculo/slide_03.jpg"
       },
       {
         "number": 4,
         "sha256": "a4c0f10e1d4ea4b18ad3ee54252b387901c62097cf774246bb375b6d70152a5d",
-        "url": null
+        "url": "https://raw.githubusercontent.com/Acciolymarcelo/instagram-accioly/7a91800c61c148018e5d9a65ed01ee83dd53bf1a/media/02-musculo/slide_04.jpg"
       },
       {
         "number": 5,
         "sha256": "08b26c46953ca0e5156eba4d334a793dba9f714b15a648f2013acb56b619d0b2",
-        "url": null
+        "url": "https://raw.githubusercontent.com/Acciolymarcelo/instagram-accioly/7a91800c61c148018e5d9a65ed01ee83dd53bf1a/media/02-musculo/slide_05.jpg"
       },
       {
         "number": 6,
         "sha256": "c5bce6f6a7d7e5e5b52513978944775cfaa2be1c63ba2b795e8555a47b5cd277",
-        "url": null
+        "url": "https://raw.githubusercontent.com/Acciolymarcelo/instagram-accioly/7a91800c61c148018e5d9a65ed01ee83dd53bf1a/media/02-musculo/slide_06.jpg"
       },
       {
         "number": 7,
         "sha256": "4c8d1a1c025743a44cc92188f7b295c25b747ad721f7b7bb924200257ea18a61",
-        "url": null
+        "url": "https://raw.githubusercontent.com/Acciolymarcelo/instagram-accioly/7a91800c61c148018e5d9a65ed01ee83dd53bf1a/media/02-musculo/slide_07.jpg"
       },
       {
         "number": 8,
         "sha256": "7a39c5f8b26e3ce6aeb8fd03594a119de41173adb17aff8e4d2c0d3e7ee42ac4",
-        "url": null
+        "url": "https://raw.githubusercontent.com/Acciolymarcelo/instagram-accioly/7a91800c61c148018e5d9a65ed01ee83dd53bf1a/media/02-musculo/slide_08.jpg"
       },
       {
         "number": 9,
         "sha256": "ac013b4109e89187875417768e3c80ecc73fd3893ae520f292c86e1fab813d16",
-        "url": null
+        "url": "https://raw.githubusercontent.com/Acciolymarcelo/instagram-accioly/7a91800c61c148018e5d9a65ed01ee83dd53bf1a/media/02-musculo/slide_09.jpg"
       },
       {
         "number": 10,
         "sha256": "78237c3715bfc359affc2577849b2d90d10a98812cf0654c8b0b39961374567e",
-        "url": null
+        "url": "https://raw.githubusercontent.com/Acciolymarcelo/instagram-accioly/7a91800c61c148018e5d9a65ed01ee83dd53bf1a/media/02-musculo/slide_10.jpg"
       },
       {
         "number": 11,
         "sha256": "62657dc43d817af0ea3c3aa3caf08446073e90f907400b4797090de98f82ee47",
-        "url": null
+        "url": "https://raw.githubusercontent.com/Acciolymarcelo/instagram-accioly/7a91800c61c148018e5d9a65ed01ee83dd53bf1a/media/02-musculo/slide_11.jpg"
       },
       {
         "number": 12,
         "sha256": "6fad0d07517e89a11423da9043e67dd20cca374500e650800c5ad1c7fd1a398b",
-        "url": null
+        "url": "https://raw.githubusercontent.com/Acciolymarcelo/instagram-accioly/7a91800c61c148018e5d9a65ed01ee83dd53bf1a/media/02-musculo/slide_12.jpg"
       }
     ],
     "04-testosterona": [
       {
         "number": 1,
         "sha256": "5906bfa255d56356aaef7d66b3f2a69816a9903abef2adf376847cda74d6b198",
-        "url": null
+        "url": "https://raw.githubusercontent.com/Acciolymarcelo/instagram-accioly/7a91800c61c148018e5d9a65ed01ee83dd53bf1a/media/04-testosterona/slide_01.jpg"
       },
       {
         "number": 2,
         "sha256": "9fe46189d4c561f23b8c3d636fd232a613b8c841f10a99fe248f455b76cd8a0d",
-        "url": null
+        "url": "https://raw.githubusercontent.com/Acciolymarcelo/instagram-accioly/7a91800c61c148018e5d9a65ed01ee83dd53bf1a/media/04-testosterona/slide_02.jpg"
       },
       {
         "number": 3,
         "sha256": "dc922b9580e5f3e384288ffca911f8f8e562f3ad7e84e5676109bd7642c1940b",
-        "url": null
+        "url": "https://raw.githubusercontent.com/Acciolymarcelo/instagram-accioly/7a91800c61c148018e5d9a65ed01ee83dd53bf1a/media/04-testosterona/slide_03.jpg"
       },
       {
         "number": 4,
         "sha256": "f9cddfd0a95f7649226ed4e3d180074c1eb2326fa38256cae0c278c4548235a3",
-        "url": null
+        "url": "https://raw.githubusercontent.com/Acciolymarcelo/instagram-accioly/7a91800c61c148018e5d9a65ed01ee83dd53bf1a/media/04-testosterona/slide_04.jpg"
       },
       {
         "number": 5,
         "sha256": "0fc5913b92b1fe21ba164abb7441cd11e49bc93cb79795eb5e66b723bc8591bb",
-        "url": null
+        "url": "https://raw.githubusercontent.com/Acciolymarcelo/instagram-accioly/7a91800c61c148018e5d9a65ed01ee83dd53bf1a/media/04-testosterona/slide_05.jpg"
       },
       {
         "number": 6,
         "sha256": "c5acedd27881477278b8010f77308e377464e1927b429a2132444a6621969928",
-        "url": null
+        "url": "https://raw.githubusercontent.com/Acciolymarcelo/instagram-accioly/7a91800c61c148018e5d9a65ed01ee83dd53bf1a/media/04-testosterona/slide_06.jpg"
       },
       {
         "number": 7,
         "sha256": "67b426f514b59f248a297a2823d4eb09959db8bdd353475bf7d24c7e4679c7f5",
-        "url": null
+        "url": "https://raw.githubusercontent.com/Acciolymarcelo/instagram-accioly/7a91800c61c148018e5d9a65ed01ee83dd53bf1a/media/04-testosterona/slide_07.jpg"
       },
       {
         "number": 8,
         "sha256": "63df1c1a4d7fab7e4078c0a116baf23993590a26b1799e3fad921746950e632a",
-        "url": null
+        "url": "https://raw.githubusercontent.com/Acciolymarcelo/instagram-accioly/7a91800c61c148018e5d9a65ed01ee83dd53bf1a/media/04-testosterona/slide_08.jpg"
       },
       {
         "number": 9,
         "sha256": "3f1fdb4b6741a9fe844de6ee0341da22de5b2674d107943056488e89f39ec0cd",
-        "url": null
+        "url": "https://raw.githubusercontent.com/Acciolymarcelo/instagram-accioly/7a91800c61c148018e5d9a65ed01ee83dd53bf1a/media/04-testosterona/slide_09.jpg"
       },
       {
         "number": 10,
         "sha256": "eceb85d7a2ce7bcaf8cc26101214bd2fb4ca2fa220c4d14e2b87737b6811f70e",
-        "url": null
+        "url": "https://raw.githubusercontent.com/Acciolymarcelo/instagram-accioly/7a91800c61c148018e5d9a65ed01ee83dd53bf1a/media/04-testosterona/slide_10.jpg"
       },
       {
         "number": 11,
         "sha256": "b14afbaf0838a8426b5358046fcde89b22e41c5ceca6bfe8816aec72d7e85c4a",
-        "url": null
+        "url": "https://raw.githubusercontent.com/Acciolymarcelo/instagram-accioly/7a91800c61c148018e5d9a65ed01ee83dd53bf1a/media/04-testosterona/slide_11.jpg"
       },
       {
         "number": 12,
         "sha256": "039a29220ce597eaada9ddca6010341baeb85ec08f8fd60dc61e9297b0f58591",
-        "url": null
+        "url": "https://raw.githubusercontent.com/Acciolymarcelo/instagram-accioly/7a91800c61c148018e5d9a65ed01ee83dd53bf1a/media/04-testosterona/slide_12.jpg"
       },
       {
         "number": 13,
         "sha256": "8b32dc8f0306422c34e0ce4319408b21d07a2ffb687675036e0f59b74460af2b",
-        "url": null
+        "url": "https://raw.githubusercontent.com/Acciolymarcelo/instagram-accioly/7a91800c61c148018e5d9a65ed01ee83dd53bf1a/media/04-testosterona/slide_13.jpg"
       },
       {
         "number": 14,
         "sha256": "920040653814bb7de755701343c6d4e2b8370b848f8ede643b318bb988411e9c",
-        "url": null
+        "url": "https://raw.githubusercontent.com/Acciolymarcelo/instagram-accioly/7a91800c61c148018e5d9a65ed01ee83dd53bf1a/media/04-testosterona/slide_14.jpg"
       },
       {
         "number": 15,
         "sha256": "8d74b2a4c6cf4973758bd81a1402ba3c39e89fd7fd177f9591f42c266c6eeb99",
-        "url": null
+        "url": "https://raw.githubusercontent.com/Acciolymarcelo/instagram-accioly/7a91800c61c148018e5d9a65ed01ee83dd53bf1a/media/04-testosterona/slide_15.jpg"
       },
       {
         "number": 16,
         "sha256": "59604d5bb98f9d27ad250d0a201aba39ed988e1add052eb2d824adb0ebdebb83",
-        "url": null
+        "url": "https://raw.githubusercontent.com/Acciolymarcelo/instagram-accioly/7a91800c61c148018e5d9a65ed01ee83dd53bf1a/media/04-testosterona/slide_16.jpg"
       },
       {
         "number": 17,
         "sha256": "2aa10144cf17431640bfa884fd77404863e7a6191f0ee93e8b9a56201dbbfb10",
-        "url": null
+        "url": "https://raw.githubusercontent.com/Acciolymarcelo/instagram-accioly/7a91800c61c148018e5d9a65ed01ee83dd53bf1a/media/04-testosterona/slide_17.jpg"
       },
       {
         "number": 18,
         "sha256": "956eaa830f4d8cf03f2a3dab5770ee9847f628048a96c4e485fb02fecc08a12b",
-        "url": null
+        "url": "https://raw.githubusercontent.com/Acciolymarcelo/instagram-accioly/7a91800c61c148018e5d9a65ed01ee83dd53bf1a/media/04-testosterona/slide_18.jpg"
       },
       {
         "number": 19,
         "sha256": "9f0e7cde4851eaefed5af4a8f379728db7c73275daf355998a27aaca5ecc87dd",
-        "url": null
+        "url": "https://raw.githubusercontent.com/Acciolymarcelo/instagram-accioly/7a91800c61c148018e5d9a65ed01ee83dd53bf1a/media/04-testosterona/slide_19.jpg"
       },
       {
         "number": 20,
         "sha256": "545c8ba2d63f4821478e0e6fd97bedb280bfcc632e60700b4fe38b4a7ff96be8",
-        "url": null
+        "url": "https://raw.githubusercontent.com/Acciolymarcelo/instagram-accioly/7a91800c61c148018e5d9a65ed01ee83dd53bf1a/media/04-testosterona/slide_20.jpg"
       }
     ],
     "05-refeicoes": [
       {
         "number": 1,
         "sha256": "c0dbc67cabab4c53ec0698342256eefa48461f420c0d4043a4e08f9e1e1d7d8a",
-        "url": null
+        "url": "https://raw.githubusercontent.com/Acciolymarcelo/instagram-accioly/7a91800c61c148018e5d9a65ed01ee83dd53bf1a/media/05-refeicoes/slide_01.jpg"
       },
       {
         "number": 2,
         "sha256": "4a01bf2d22016821ae7ed9428e2ed0fcdf8eebf4fdfa648f6bb136d8017b5d76",
-        "url": null
+        "url": "https://raw.githubusercontent.com/Acciolymarcelo/instagram-accioly/7a91800c61c148018e5d9a65ed01ee83dd53bf1a/media/05-refeicoes/slide_02.jpg"
       },
       {
         "number": 3,
         "sha256": "58785590ccc5e6a29856dcea98d0338afee0f30344385ad33be2111dd4a74afb",
-        "url": null
+        "url": "https://raw.githubusercontent.com/Acciolymarcelo/instagram-accioly/7a91800c61c148018e5d9a65ed01ee83dd53bf1a/media/05-refeicoes/slide_03.jpg"
       },
       {
         "number": 4,
         "sha256": "d2f612f4f3a218f5fc85ba92cdc89a41842caca51e5a69fa5d43e1d29d7f047f",
-        "url": null
+        "url": "https://raw.githubusercontent.com/Acciolymarcelo/instagram-accioly/7a91800c61c148018e5d9a65ed01ee83dd53bf1a/media/05-refeicoes/slide_04.jpg"
       },
       {
         "number": 5,
         "sha256": "ac1233845bb723c32e474dac0b5491a92690c1a479d76c0bff1aa76a7ca6855d",
-        "url": null
+        "url": "https://raw.githubusercontent.com/Acciolymarcelo/instagram-accioly/7a91800c61c148018e5d9a65ed01ee83dd53bf1a/media/05-refeicoes/slide_05.jpg"
       },
       {
         "number": 6,
         "sha256": "a83e4ec24c1b4e18872928070ed68e0096b25d905c6445cc5221d0d0b9cda919",
-        "url": null
+        "url": "https://raw.githubusercontent.com/Acciolymarcelo/instagram-accioly/7a91800c61c148018e5d9a65ed01ee83dd53bf1a/media/05-refeicoes/slide_06.jpg"
       },
       {
         "number": 7,
         "sha256": "92e57962d674ce7d0d52fdd8d18c6dec8377767b5d681d1ea3175e33dcd638d3",
-        "url": null
+        "url": "https://raw.githubusercontent.com/Acciolymarcelo/instagram-accioly/7a91800c61c148018e5d9a65ed01ee83dd53bf1a/media/05-refeicoes/slide_07.jpg"
       },
       {
         "number": 8,
         "sha256": "bb6a9a75b4f69a6f4a5e085e72a9146ba93420fe5a55942962e083afb82726e3",
-        "url": null
+        "url": "https://raw.githubusercontent.com/Acciolymarcelo/instagram-accioly/7a91800c61c148018e5d9a65ed01ee83dd53bf1a/media/05-refeicoes/slide_08.jpg"
       },
       {
         "number": 9,
         "sha256": "fffdd9deab2ea8540d8c4a9c719a0cc99c57a116eeddfaac521055cc2561cdb0",
-        "url": null
+        "url": "https://raw.githubusercontent.com/Acciolymarcelo/instagram-accioly/7a91800c61c148018e5d9a65ed01ee83dd53bf1a/media/05-refeicoes/slide_09.jpg"
       },
       {
         "number": 10,
         "sha256": "491a8fd44cf50afdb8c89463ea3c89563dc8e2da77896d784d833231feb8a6fb",
-        "url": null
+        "url": "https://raw.githubusercontent.com/Acciolymarcelo/instagram-accioly/7a91800c61c148018e5d9a65ed01ee83dd53bf1a/media/05-refeicoes/slide_10.jpg"
       },
       {
         "number": 11,
         "sha256": "9819e379f862bb07b5305d32cfe6eafeea5d68ebd54caf28397e60a707d5f249",
-        "url": null
+        "url": "https://raw.githubusercontent.com/Acciolymarcelo/instagram-accioly/7a91800c61c148018e5d9a65ed01ee83dd53bf1a/media/05-refeicoes/slide_11.jpg"
       }
     ],
     "03-manutencao": [
       {
         "number": 1,
         "sha256": "c71b2fd6713231070f318263bf5f50cca12a646d207feb9d1326fe7d79640091",
-        "url": null
+        "url": "https://raw.githubusercontent.com/Acciolymarcelo/instagram-accioly/7a91800c61c148018e5d9a65ed01ee83dd53bf1a/media/03-manutencao/slide_01.jpg"
       },
       {
         "number": 2,
         "sha256": "9b0b883c9fe825aa1187649e949ebbbd2e27d58daf24160d8165a3d38443c9d7",
-        "url": null
+        "url": "https://raw.githubusercontent.com/Acciolymarcelo/instagram-accioly/7a91800c61c148018e5d9a65ed01ee83dd53bf1a/media/03-manutencao/slide_02.jpg"
       },
       {
         "number": 3,
         "sha256": "57412db388b9ef44c92e6da2aa1cd1a848c43bc59584cd63f586c58c5d3e8955",
-        "url": null
+        "url": "https://raw.githubusercontent.com/Acciolymarcelo/instagram-accioly/7a91800c61c148018e5d9a65ed01ee83dd53bf1a/media/03-manutencao/slide_03.jpg"
       },
       {
         "number": 4,
         "sha256": "bc396f50f01f5284dd24f9b11c609a1615c0e84957d49ed7fe1dfa7548e31291",
-        "url": null
+        "url": "https://raw.githubusercontent.com/Acciolymarcelo/instagram-accioly/7a91800c61c148018e5d9a65ed01ee83dd53bf1a/media/03-manutencao/slide_04.jpg"
       },
       {
         "number": 5,
         "sha256": "0fb206fc6d5b1c809d9f8bbbd1388caa6a8d616377757dd3737c27ba2b542ea4",
-        "url": null
+        "url": "https://raw.githubusercontent.com/Acciolymarcelo/instagram-accioly/7a91800c61c148018e5d9a65ed01ee83dd53bf1a/media/03-manutencao/slide_05.jpg"
       },
       {
         "number": 6,
         "sha256": "4b5f88ab405d0b5bf85b952f28fcb33fa3928102de0cc945b1d64f85131007dc",
-        "url": null
+        "url": "https://raw.githubusercontent.com/Acciolymarcelo/instagram-accioly/7a91800c61c148018e5d9a65ed01ee83dd53bf1a/media/03-manutencao/slide_06.jpg"
       },
       {
         "number": 7,
         "sha256": "54a69165d5e3beb76f21c959bb872dfc424fb028d8658f5466ab837e18ab29c0",
-        "url": null
+        "url": "https://raw.githubusercontent.com/Acciolymarcelo/instagram-accioly/7a91800c61c148018e5d9a65ed01ee83dd53bf1a/media/03-manutencao/slide_07.jpg"
       },
       {
         "number": 8,
         "sha256": "cebf3a6ecb57246a82f1ee1ee3e7655b8528756217149eb0e93e012cd9d6d004",
-        "url": null
+        "url": "https://raw.githubusercontent.com/Acciolymarcelo/instagram-accioly/7a91800c61c148018e5d9a65ed01ee83dd53bf1a/media/03-manutencao/slide_08.jpg"
       },
       {
         "number": 9,
         "sha256": "b999ba52e62318a019dbeda97b285cbf7b054492db92550ea7a55be2079545d9",
-        "url": null
+        "url": "https://raw.githubusercontent.com/Acciolymarcelo/instagram-accioly/7a91800c61c148018e5d9a65ed01ee83dd53bf1a/media/03-manutencao/slide_09.jpg"
       }
     ]
   }

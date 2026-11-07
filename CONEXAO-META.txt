@@ -1,0 +1,15 @@
+CONEXÃO ÚNICA — INSTAGRAM ACCIOLY
+1. Abra https://developers.facebook.com/apps/ e entre na sua conta Meta.
+2. Clique em Criar aplicativo; se solicitado, conclua o cadastro de desenvolvedor.
+3. No fluxo documentado, escolha Outro > Empresa (Other > Business).
+4. Nome sugerido: Accioly Publicações. Informe seu e-mail de contato.
+5. Adicione Instagram > Configurar > API setup with Instagram login.
+6. Em Gerar tokens de acesso, adicione a conta @acciolymarceloo e faça o login oficial.
+7. Use sua própria conta Criador de conteúdo; o acesso Standard atende a esse uso.
+8. Clique em Generate token ao lado da conta e autorize identificação e publicação.
+9. O token gerado nesse painel vale por 60 dias; copie-o sem enviá-lo nesta conversa.
+10. Abra https://github.com/Acciolymarcelo/instagram-accioly/settings/secrets/actions
+11. Clique New repository secret; em Name, escreva IG_ACCESS_TOKEN.
+12. Cole o token somente no campo Secret e clique Add secret. Depois avise “segredo salvo”.
+Limitação: os menus podem variar; papéis, permissões e conexão real ainda precisam ser verificados. O token exige renovação antes de vencer.
+Fonte: https://developers.facebook.com/documentation/instagram-platform/instagram-api-with-instagram-login/get-started
