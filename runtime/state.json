@@ -9,8 +9,11 @@
       "content_sha256": "77bb8e94782de74aa098bd0fce57824e808fd85a7c96b6020611436a1e7931bc",
       "operations": {
         "child_01": {
-          "status": "pending",
-          "started_at": "2026-11-07T15:03:36.927088+00:00"
+          "status": "done",
+          "completed_at": "2026-11-07T15:03:42.103553+00:00",
+          "result": {
+            "id": "17957986023272549"
+          }
         }
       },
       "started_at": "2026-11-07T15:03:35.342279+00:00"
