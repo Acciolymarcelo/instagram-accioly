@@ -225,7 +225,12 @@
     "04-testosterona": {
       "state": "processing",
       "content_sha256": "8a5c84af76f437cce36317933f139caffc12d4f87ac886dd45b96215019267b3",
-      "operations": {},
+      "operations": {
+        "child_01": {
+          "status": "pending",
+          "started_at": "2026-11-07T23:03:30.873661+00:00"
+        }
+      },
       "started_at": "2026-11-07T23:03:29.271996+00:00"
     }
   }
