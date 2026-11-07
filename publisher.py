@@ -475,6 +475,29 @@ class Publisher:
             entry['reconciliation_read_failed'] = True
         self.save()
 
+    def verify_published(self, piece, entry):
+        try:
+            actual = self.client.request('GET', entry['media_id'], {'fields': 'id,caption,media_type,permalink,children'})
+            children = actual.get('children')
+            children_data = children.get('data') if isinstance(children, dict) else None
+            caption = piece['caption']
+            # Meta can omit a single final newline when returning the published caption.
+            caption_matches = actual.get('caption') in (caption, caption.removesuffix('\n'))
+            entry['readback_verified'] = (
+                str(actual.get('id')) == entry['media_id'] and caption_matches and
+                actual.get('media_type') == 'CAROUSEL_ALBUM' and isinstance(children_data, list) and
+                len(children_data) == len(piece['images']) and not entry.get('config_issue'))
+            link = actual.get('permalink')
+            if isinstance(link, str) and link.startswith('https://www.instagram.com/'):
+                entry['permalink'] = link
+            if entry['readback_verified']:
+                entry.pop('verification_issue', None)
+            else:
+                entry['verification_issue'] = 'Published, but caption/type/image-count readback did not fully match.'
+        except PublisherError:
+            entry['verification_issue'] = 'Published ID confirmed; readback unavailable.'
+        self.save()
+
     def publish(self, piece, urls, lateness):
         validate_piece(piece)
         if self.state.get('account') != EXPECTED_ACCOUNT:
@@ -531,20 +554,7 @@ class Publisher:
             if result.get('config_issue'):
                 entry['config_issue'] = result['config_issue']
             self.save()  # A failed GET after this point must never replay publication.
-            try:
-                actual = self.client.request('GET', entry['media_id'], {'fields': 'id,caption,media_type,permalink,children'})
-                children_data = actual.get('children', {}).get('data', []) if isinstance(actual.get('children'), dict) else []
-                entry['readback_verified'] = (str(actual.get('id')) == entry['media_id'] and
-                    actual.get('caption') == piece['caption'] and actual.get('media_type') == 'CAROUSEL_ALBUM' and
-                    len(children_data) == len(piece['images']) and not result.get('config_issue'))
-                link = actual.get('permalink')
-                if isinstance(link, str) and link.startswith('https://www.instagram.com/'):
-                    entry['permalink'] = link
-                if not entry['readback_verified']:
-                    entry['verification_issue'] = 'Published, but caption/type/image-count readback did not fully match.'
-            except PublisherError:
-                entry['verification_issue'] = 'Published ID confirmed; readback unavailable.'
-            self.save()
+            self.verify_published(piece, entry)
         except DurabilityError:
             raise
         except GraphError as exc:
@@ -615,6 +625,11 @@ def run_due(manifest, media, state_path, *, execute=False, lateness=None, now=No
         for piece in manifest['pieces']:
             entry = state['pieces'].get(piece['slug'])
             if entry and entry.get('state') in ('published', 'failed'):
+                if entry['state'] == 'published' and entry.get('media_id') and entry.get('readback_verified') is False:
+                    client.check_identity()
+                    if state.get('user_id') not in (None, client.user_id):
+                        raise PublisherError('State belongs to another Instagram user ID.')
+                    publisher.verify_published(piece, entry)
                 report['pieces'].append({'slug': piece['slug'], 'state': entry['state'], 'reused': True,
                                          'readback_verified': entry.get('readback_verified'),
                                          'verification_issue': entry.get('verification_issue')})

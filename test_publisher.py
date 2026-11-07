@@ -34,6 +34,7 @@ def state():
 class FakeGraph:
     user_id = '123456'
     version = 'v27.0'
+    readback_caption = CAPTION
 
     def __init__(self, count=20, fail_publish=False, events=None):
         self.calls, self.counter, self.parent, self.did_publish = [], 100, None, False
@@ -60,7 +61,7 @@ class FakeGraph:
                 self.parent = str(self.counter)
             return {'id': str(self.counter)}
         if path == '999':
-            return {'id': '999', 'caption': CAPTION, 'media_type': 'CAROUSEL_ALBUM',
+            return {'id': '999', 'caption': self.readback_caption, 'media_type': 'CAROUSEL_ALBUM',
                     'children': {'data': [{'id': str(i)} for i in range(self.count)]},
                     'permalink': 'https://www.instagram.com/p/test-only-fixture/'}
         return {'status_code': 'PUBLISHED' if path == self.parent and self.did_publish else 'FINISHED'}
@@ -214,6 +215,26 @@ class PublisherTests(unittest.TestCase):
         before = len(fake.calls)
         pub.publish(piece(), urls(), 900)
         self.assertEqual(len(fake.calls), before)
+
+    def test_due_run_rechecks_unverified_publication_without_reposting(self):
+        item = piece(2)
+        manifest = {'account': p.EXPECTED_ACCOUNT, 'graph_version': 'v27.0', 'pieces': [item]}
+        fake = FakeGraph(count=2)
+        fake.readback_caption = CAPTION.removesuffix('\n')
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / 'state.json'
+            with p.locked_state(path, manifest) as (st, save):
+                st['pieces'][item['slug']] = {
+                    'state': 'published', 'media_id': '999', 'readback_verified': False,
+                    'content_sha256': item['content_sha256'], 'verification_issue': 'Readback did not match.',
+                }
+                save()
+            report = p.run_due(manifest, {}, path, execute=True, lateness=900, client=fake)
+            confirmed = json.loads(path.read_text())['pieces'][item['slug']]
+        self.assertTrue(report['pieces'][0]['readback_verified'])
+        self.assertTrue(confirmed['readback_verified'])
+        self.assertNotIn('verification_issue', confirmed)
+        self.assertEqual([call[:2] for call in fake.calls], [('GET', '999')])
 
     def test_early_and_late_publications_are_rejected(self):
         for delta in (-1, 901):
