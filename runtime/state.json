@@ -94,9 +94,8 @@
       "media_id": "17911716741590874",
       "published_at": "2026-11-07T15:04:56.264566+00:00",
       "publication_confirmation": "media_publish_returned_id",
-      "readback_verified": false,
-      "permalink": "https://www.instagram.com/p/DfcdiOajHn4/",
-      "verification_issue": "Published, but caption/type/image-count readback did not fully match."
+      "readback_verified": true,
+      "permalink": "https://www.instagram.com/p/DfcdiOajHn4/"
     }
   }
 }
