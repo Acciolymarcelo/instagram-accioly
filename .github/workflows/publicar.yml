@@ -28,6 +28,8 @@ jobs:
     if: (github.event_name == 'workflow_dispatch' && inputs.operation == 'preflight') || vars.ACCIOLY_PUBLISHING_ENABLED == 'true'
     runs-on: ubuntu-24.04
     timeout-minutes: 25
+    env:
+      IG_LOGIN_MODE: unified
     steps:
       - name: Checkout da fila e do estado confirmado
         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4

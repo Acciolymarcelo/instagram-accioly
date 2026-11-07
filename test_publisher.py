@@ -139,6 +139,53 @@ class PublisherTests(unittest.TestCase):
                 client.check_identity()
         self.assertEqual(client.user_id, '123456')
 
+    def test_unified_login_discovers_paginated_account_on_the_trusted_host(self):
+        with patch.dict('os.environ', {'IG_ACCESS_TOKEN': 'test-token-not-real',
+                                     'IG_GRAPH_VERSION': 'v27.0', 'IG_LOGIN_MODE': 'unified'}, clear=True):
+            client = p.client_from_env()
+        pages = [
+            {'data': [{'id': '10', 'username': 'another_account'}],
+             'paging': {'cursors': {'after': 'next&page=2'}, 'next': 'https://untrusted.example/'}},
+            {'data': [{'id': '123456', 'username': 'acciolymarceloo'}],
+             'paging': {'cursors': {'after': 'last-page'}}},
+            {'data': [{'quota_usage': 0, 'config': {'quota_total': 50}}]},
+        ]
+        with patch.object(client.opener, 'open', side_effect=[io.BytesIO(json.dumps(page).encode()) for page in pages]) as open_request:
+            self.assertEqual(client.check_identity(), {'user_id': '123456', 'username': 'acciolymarceloo'})
+            self.assertEqual(client.check_quota(), {'usage': 0, 'total': 50})
+        requests = [call.args[0] for call in open_request.call_args_list]
+        self.assertEqual([request.full_url for request in requests], [
+            'https://graph.facebook.com/v27.0/me/assigned_instagram_accounts?fields=id%2Cusername',
+            'https://graph.facebook.com/v27.0/me/assigned_instagram_accounts?fields=id%2Cusername&after=next%26page%3D2',
+            'https://graph.facebook.com/v27.0/123456/content_publishing_limit?fields=quota_usage%2Cconfig',
+        ])
+        self.assertTrue(all(request.get_method() == 'GET' for request in requests))
+        self.assertTrue(all(request.get_header('Authorization') == 'Bearer test-token-not-real' for request in requests))
+
+    def test_unified_login_rejects_ambiguous_or_mismatched_accounts(self):
+        account = {'id': '123456', 'username': 'acciolymarceloo'}
+        next_page = {'data': [account], 'paging': {'cursors': {'after': 'page-two'},
+                                                  'next': 'https://graph.facebook.com/'}}
+        cases = {
+            'wrong username': (None, [{'data': [{'id': '123456', 'username': 'other'}]}]),
+            'mismatched supplied ID': ('654321', [{'data': [account]}]),
+            'duplicate username on another page': (None, [next_page, {'data': [account]}]),
+            'invalid ID': (None, [{'data': [{'id': True, 'username': 'acciolymarceloo'}]}]),
+            'missing pagination cursor': (None, [{'data': [account], 'paging': {'next': 'https://graph.facebook.com/'}}]),
+            'repeated pagination cursor': (None, [next_page, {**next_page, 'data': []}]),
+        }
+        for reason, (supplied_id, pages) in cases.items():
+            with self.subTest(reason=reason):
+                environment = {'IG_ACCESS_TOKEN': 'test-token-not-real', 'IG_GRAPH_VERSION': 'v27.0',
+                               'IG_LOGIN_MODE': 'unified', 'IG_USER_ID': supplied_id or ''}
+                with patch.dict('os.environ', environment, clear=True):
+                    client = p.client_from_env()
+                with patch.object(client.opener, 'open', side_effect=[io.BytesIO(json.dumps(page).encode()) for page in pages]) as open_request:
+                    with self.assertRaises(p.PublisherError):
+                        client.check_identity()
+                self.assertEqual(open_request.call_count, len(pages))
+                self.assertEqual(client.user_id, supplied_id)
+
     def test_uncertain_publish_is_reconciled_read_only(self):
         fake, st = FakeGraph(fail_publish=True), state()
         pub = self.publisher(fake, st)
@@ -276,7 +323,7 @@ class PublisherTests(unittest.TestCase):
         with patch.dict('os.environ', {'IG_ACCESS_TOKEN': 'never-leak'}), patch('publisher.subprocess.run') as run:
             p.state_sync_hook('["python3", "sync.py", "{state}"]')(Path('/tmp/state.json'))
             self.assertNotIn('IG_ACCESS_TOKEN', run.call_args.kwargs['env'])
-            self.assertEqual(run.call_args.args[0][-1], '/tmp/state.json')
+            self.assertEqual(run.call_args.args[0][-1], str(Path('/tmp').resolve() / 'state.json'))
             self.assertNotIn('shell', run.call_args.kwargs)
 
     def test_reconciled_unverified_publication_returns_nonzero(self):

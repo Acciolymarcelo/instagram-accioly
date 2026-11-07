@@ -262,19 +262,25 @@ def verify_remote_image(url, expected_sha):
 
 
 class GraphClient:
-    def __init__(self, token, user_id, version):
+    def __init__(self, token, user_id, version, *, login_mode='instagram'):
         if not token or any(c.isspace() for c in token):
             raise PublisherError('IG_ACCESS_TOKEN is missing or malformed.')
         if user_id not in (None, '') and (not isinstance(user_id, str) or not re.fullmatch(r'[0-9]{1,64}', user_id)):
-            raise PublisherError('Optional IG_USER_ID must be the Instagram Login user_id.')
+            raise PublisherError('Optional IG_USER_ID must be the Instagram professional account ID.')
         if not re.fullmatch(r'v[0-9]{1,2}\.0', version or ''):
             raise PublisherError('IG_GRAPH_VERSION must be explicit, for example v27.0.')
+        if login_mode not in ('instagram', 'unified'):
+            raise PublisherError('IG_LOGIN_MODE must be instagram or unified.')
         self.token, self.user_id, self.version = token, user_id or None, version
-        self.base = 'https://graph.instagram.com/' + version
+        self.login_mode = login_mode
+        host = 'graph.facebook.com' if login_mode == 'unified' else 'graph.instagram.com'
+        self.base = f'https://{host}/{version}'
         self.opener = urllib.request.build_opener(NoRedirect())
 
     def request(self, method, path, params=None):
-        if not re.fullmatch(r'(me|[0-9]{1,64})(/(media|media_publish|content_publishing_limit))?', path):
+        assigned_accounts = (self.login_mode == 'unified' and method == 'GET' and
+                             path == 'me/assigned_instagram_accounts')
+        if not assigned_accounts and not re.fullmatch(r'(me|[0-9]{1,64})(/(media|media_publish|content_publishing_limit))?', path):
             raise PublisherError('Unsupported Graph endpoint.')
         encoded = urllib.parse.urlencode(params or {}).encode()
         url = self.base + '/' + path
@@ -296,10 +302,43 @@ class GraphClient:
         except (urllib.error.URLError, OSError, ValueError):
             raise GraphError('Graph transport or response error; details omitted.', uncertain=method == 'POST') from None
 
+    def _assigned_account(self):
+        params = {'fields': 'id,username'}
+        matches, seen_cursors = [], set()
+        while True:
+            page = self.request('GET', 'me/assigned_instagram_accounts', params)
+            accounts = page.get('data')
+            if not isinstance(accounts, list) or not all(
+                    isinstance(account, dict) and isinstance(account.get('username'), str)
+                    for account in accounts):
+                raise PublisherError('Assigned Instagram account response is unavailable or malformed.')
+            matches.extend(account for account in accounts if account['username'].casefold() == EXPECTED_ACCOUNT)
+            if len(matches) > 1:
+                break
+            paging = page.get('paging', {})
+            if not isinstance(paging, dict):
+                raise PublisherError('Assigned Instagram account pagination is malformed.')
+            if paging.get('next') is None:
+                break
+            # Rebuild the request on our Graph host. The returned URL can contain a token.
+            cursors = paging.get('cursors')
+            cursor = cursors.get('after') if isinstance(cursors, dict) else None
+            if not isinstance(cursor, str) or not cursor or cursor in seen_cursors:
+                raise PublisherError('Assigned Instagram account pagination is malformed.')
+            seen_cursors.add(cursor)
+            params['after'] = cursor
+        if len(matches) != 1:
+            raise PublisherError('The approved Instagram account must be assigned exactly once.')
+        return matches[0]
+
     def check_identity(self):
-        result = self.request('GET', 'me', {'fields': 'user_id,username'})
+        if self.login_mode == 'unified':
+            result = self._assigned_account()
+            remote_value = result.get('id')
+        else:
+            result = self.request('GET', 'me', {'fields': 'user_id,username'})
+            remote_value = result.get('user_id')
         username = result.get('username')
-        remote_value = result.get('user_id')
         remote_id = str(remote_value) if type(remote_value) in (str, int) else ''
         if (not isinstance(username, str) or username.casefold() != EXPECTED_ACCOUNT or
                 not re.fullmatch(r'[0-9]{1,64}', remote_id) or
@@ -326,7 +365,7 @@ class GraphClient:
 
 def client_from_env():
     return GraphClient(os.environ.get('IG_ACCESS_TOKEN', ''), os.environ.get('IG_USER_ID', ''),
-                       os.environ.get('IG_GRAPH_VERSION', ''))
+                       os.environ.get('IG_GRAPH_VERSION', ''), login_mode=os.environ.get('IG_LOGIN_MODE', 'instagram'))
 
 
 @contextlib.contextmanager

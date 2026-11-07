@@ -22,8 +22,8 @@ As legendas completas e a ordem dos slides estão em [manifest.json](manifest.js
 
 ## Ativação única
 
-1. Autorizar a conta profissional no próprio aplicativo Meta, usando **Instagram API with Instagram Login**, e gerar o token para publicação. Documentação oficial: [Get started](https://developers.facebook.com/documentation/instagram-platform/instagram-api-with-instagram-login/get-started).
-2. Em [Actions secrets](https://github.com/Acciolymarcelo/instagram-accioly/settings/secrets/actions), cadastrar `IG_ACCESS_TOKEN` como **repository secret**. Nunca inserir o token no código, no chat ou em variável pública. `IG_USER_ID` é opcional: o executor identifica a conta e exige o usuário `acciolymarceloo` antes de publicar.
+1. Autorizar a conta profissional no aplicativo Meta usando **Instagram API with Unified Login** e gerar um **System-user access token (SUAT)** com acesso à conta e à publicação. [Guia oficial da Meta](https://developers.facebook.com/documentation/instagram-platform/instagram-api-with-unified-login/get-started).
+2. Cadastrar o SUAT apenas como **repository secret** `IG_ACCESS_TOKEN`. O executor consulta as contas do token e exige um único resultado para `acciolymarceloo`. Se fornecido, `IG_USER_ID` deve coincidir com o ID desse resultado. [Actions secrets](https://github.com/Acciolymarcelo/instagram-accioly/settings/secrets/actions).
 3. Em [Actions](https://github.com/Acciolymarcelo/instagram-accioly/actions), executar **Publicador Accioly → Run workflow → preflight**. É uma conferência somente de leitura da conta, limite da API e de cada imagem pública.
 4. Com o preflight aprovado e as datas ainda futuras, cadastrar `ACCIOLY_PUBLISHING_ENABLED` com valor `true` em [Actions variables](https://github.com/Acciolymarcelo/instagram-accioly/settings/variables/actions).
 
@@ -52,4 +52,4 @@ python3 publisher.py preflight
 python3 publisher.py run-due --max-lateness-seconds 900
 ```
 
-Os dois últimos comandos são locais e não publicam. A verificação real, somente leitura, usa `python3 publisher.py preflight --execute`, com o secret disponível no ambiente. O workflow é a forma prevista de publicação, pois sincroniza o estado durável a cada etapa. Fotos pessoais de referência, fontes de pesquisa e credenciais não integram este repositório.
+Os dois últimos comandos são locais e não publicam. A verificação real, somente leitura, usa `IG_LOGIN_MODE=unified IG_GRAPH_VERSION=v27.0 python3 publisher.py preflight --execute`, com `IG_ACCESS_TOKEN` disponível no ambiente. O workflow é a forma prevista de publicação, pois sincroniza o estado durável a cada etapa. Fotos pessoais de referência, fontes de pesquisa e credenciais não integram este repositório.

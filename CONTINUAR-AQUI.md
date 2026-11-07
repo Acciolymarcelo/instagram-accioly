@@ -14,7 +14,7 @@ O usuário quer continuar em uma sessão local. A sessão anterior tinha execuç
 - `manifest.json`: cinco peças, legendas integrais, ordem, datas, tamanhos e SHA-256.
 - `media/`: 60 JPEGs finais, em cinco pastas.
 - `media-urls.json`: URLs públicas diretas fixadas ao commit de imagens `7a91800c61c148018e5d9a65ed01ee83dd53bf1a`.
-- `publisher.py`: publicador Python usando Instagram API with Instagram Login, Graph v27.0.
+- `publisher.py` usa Graph v27.0. O workflow seleciona **Instagram API with Unified Login** com `IG_LOGIN_MODE=unified`.
 - `scripts/sync_state.py`: confirmação de estado durável no Git antes e depois das operações.
 - `.github/workflows/publicar.yml`: horários 12h, 16h e 20h, America/Sao_Paulo; publicação depende de `ACCIOLY_PUBLISHING_ENABLED=true`.
 - `.github/workflows/validar.yml`: validação automática sem acesso ao Instagram.
@@ -26,16 +26,14 @@ Validação comprovada: **30 testes** (21 do publicador, 9 de persistência); **
 
 A conexão direta com a Meta ainda não foi configurada. O teste de conexão de https://github.com/Acciolymarcelo/instagram-accioly/actions/runs/42363554175 parou antes de chamar o Instagram com a mensagem: “A conexão Meta não está configurada; nenhuma publicação executada.” `IG_ACCESS_TOKEN` estava vazio. Nenhuma publicação por esta automação foi confirmada.
 
-O usuário criou um app Meta chamado **Accioly**. Na última tela compartilhada havia os casos “Gerenciar tudo na sua Página” e “Incorporar conteúdo do Facebook, Instagram e Threads em outros sites”. O segundo é oEmbed e não concede publicação. A orientação mais recente foi abrir **Adicionar casos de uso → Tudo**, procurar **Manage messaging and content on Instagram** e selecionar **API setup with Instagram Login** na personalização. Não foi confirmado que esse caso já foi adicionado.
-
-Os casos disponíveis dependem da compatibilidade do app; não há evidência de que o app atual precise ser descartado. Inspecione a lista real antes de criar outro app ou alterar a estratégia.
+O app Meta **Accioly** oferece **API setup with Unified login** em **Manage messaging & content on Instagram**. O painel indica que o Instagram Login anterior está indisponível para apps mais novos. O modo Unified usa um SUAT e consulta os ativos do portfólio em `graph.facebook.com`. [Autenticação do Unified Login](https://developers.facebook.com/documentation/instagram-platform/instagram-api-with-unified-login/authentication).
 
 ## Próximas ações, em ordem
 
 1. Na sessão local, ler este arquivo e, se recebido, `CONTEXTO-PRIVADO.md` do pacote de transferência. Verificar acesso ao repositório e ao Chrome autorizado; listar as abas de fato disponibilizadas e selecionar a Meta.
-2. No app Accioly, concluir o caso correto do Instagram com **Instagram Login**. Se a opção estiver ausente, diagnosticar a compatibilidade do app antes de recriar qualquer coisa. Não trocar silenciosamente para Facebook Login, pois o código usa o host e as permissões de Instagram Login.
-3. Adicionar a conta profissional `@acciolymarceloo`, aceitar os convites/permissões necessários e gerar um token de teste de longa duração no painel. O token gerado por esse fluxo é documentado com 60 dias de validade. Garantir a permissão de publicação; não usar token oEmbed.
-4. Guardar o token como repository secret **IG_ACCESS_TOKEN** em https://github.com/Acciolymarcelo/instagram-accioly/settings/secrets/actions . Nunca colar o valor no chat, log ou arquivo versionado. `IG_USER_ID` é opcional: o publicador lê `/me`, exige o username esperado e só então adota o ID.
+2. No app Accioly, abrir **API setup with Unified login** e configurar o acesso à conta profissional com `instagram_basic` e `instagram_content_publish`. [Configuração oficial da Meta](https://developers.facebook.com/documentation/instagram-platform/instagram-api-with-unified-login/get-started).
+3. Em **Generate access tokens**, adicionar a conta `@acciolymarceloo`, aceitar o convite e gerar o SUAT. Conferir a validade indicada na configuração.
+4. Guardar o token como repository secret **IG_ACCESS_TOKEN**. O publicador identifica a conta por `/me/assigned_instagram_accounts` e exige um único resultado com o username aprovado. O secret opcional `IG_USER_ID` deve coincidir com o ID encontrado. [Actions secrets](https://github.com/Acciolymarcelo/instagram-accioly/settings/secrets/actions).
 5. Executar **Publicador Accioly → workflow_dispatch → operation=preflight**. O preflight funciona mesmo com publicação desativada e realiza somente leituras. Confirmar identidade, quota da API e todos os JPEGs.
 6. Conferir a data atual e a fila abaixo. Se as datas venceram, conciliar uma programação futura com a autorização do usuário antes de ativar; nunca publicar a fila atrasada de uma vez. Atualizar campos de data local/UTC de forma coerente e preservar os conteúdos.
 7. Com os requisitos atendidos, definir `ACCIOLY_PUBLISHING_ENABLED=true` em https://github.com/Acciolymarcelo/instagram-accioly/settings/variables/actions . Esse controle pode exigir UI, pois o conector GitHub não expõe escrita de variáveis/Secrets em todas as sessões.
@@ -65,7 +63,7 @@ O executor recusa atraso superior a 15 minutos. GitHub Actions pode atrasar; cro
 
 - Caso de uso atual da Meta: https://developers.facebook.com/documentation/development/create-an-app/instagram-use-case
 - Regras de compatibilidade: https://developers.facebook.com/documentation/development/create-an-app
-- Token/conta Instagram Login: https://developers.facebook.com/documentation/instagram-platform/instagram-api-with-instagram-login/get-started
+- Token/conta Unified Login: https://developers.facebook.com/documentation/instagram-platform/instagram-api-with-unified-login/get-started
 - Work local e nuvem: https://help.openai.com/en/articles/20001275-chatgpt-work-and-codex
 - Chrome existente e extensão oficial: https://help.openai.com/en/articles/20001277-using-the-built-in-browser-in-the-chatgpt-desktop-app
 
