@@ -5,7 +5,7 @@
   "user_id": "17841468176460750",
   "pieces": {
     "01-cabelo": {
-      "state": "processing",
+      "state": "published",
       "content_sha256": "77bb8e94782de74aa098bd0fce57824e808fd85a7c96b6020611436a1e7931bc",
       "operations": {
         "child_01": {
@@ -90,7 +90,11 @@
         "17957986233272549",
         "17957986254272549"
       ],
-      "carousel_id": "17957986284272549"
+      "carousel_id": "17957986284272549",
+      "media_id": "17911716741590874",
+      "published_at": "2026-11-07T15:04:56.264566+00:00",
+      "publication_confirmation": "media_publish_returned_id",
+      "readback_verified": false
     }
   }
 }
