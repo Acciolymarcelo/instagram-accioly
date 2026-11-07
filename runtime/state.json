@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "manifest_sha256": "1f0427d7bb6945fb5a5e33e8b3b2a05f778d98335bdd7eef0c2c0e2c3d99a54a",
+  "account": "acciolymarceloo",
+  "user_id": "17841468176460750",
+  "pieces": {
+    "01-cabelo": {
+      "state": "processing",
+      "content_sha256": "77bb8e94782de74aa098bd0fce57824e808fd85a7c96b6020611436a1e7931bc",
+      "operations": {},
+      "started_at": "2026-11-07T15:03:35.342279+00:00"
+    }
+  }
+}
