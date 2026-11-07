@@ -1,0 +1,41 @@
+name: Validar publicador e carrosséis
+
+on:
+  push:
+    branches: [main]
+    paths-ignore: ['runtime/**']
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - name: Testes sem acesso ao Instagram
+        run: |
+          python3 -m unittest -v test_publisher
+          python3 -m unittest discover -s testes -v
+      - name: Conferir os 60 arquivos finais
+        run: |
+          python3 - <<'PY'
+          import hashlib, json
+          from pathlib import Path
+          from publisher import validate_manifest
+          manifest = json.loads(Path('manifest.json').read_text())
+          validate_manifest(manifest)
+          count = 0
+          for piece in manifest['pieces']:
+              for image in piece['images']:
+                  data = Path(image['local_file']).read_bytes()
+                  assert hashlib.sha256(data).hexdigest() == image['sha256']
+                  assert len(data) == image['bytes']
+                  count += 1
+          print(f'{len(manifest["pieces"])} carrosséis e {count} imagens conferidos.')
+          PY

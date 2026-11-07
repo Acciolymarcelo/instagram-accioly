@@ -1,0 +1,55 @@
+{
+  "verified_at": "2026-11-07",
+  "sources": [
+    {
+      "url": "https://developers.facebook.com/documentation/instagram-platform/content-publishing",
+      "verified": "2026-11-07",
+      "updated": "2026-10-20",
+      "supports": [
+        "Instagram Login uses graph.instagram.com",
+        "Current examples use v27.0",
+        "Carousel children up to20",
+        "Public image_url required",
+        "GET container fields=status_code returns FINISHED/IN_PROGRESS/ERROR/EXPIRED/PUBLISHED"
+      ],
+      "caveat": "This guide mentions100 API posts/24h and also50 in carousel limitations; publisher queries account quota config and does not assume either."
+    },
+    {
+      "url": "https://developers.facebook.com/documentation/instagram-platform/instagram-graph-api/reference/ig-user/media",
+      "verified": "2026-11-07",
+      "updated": "2026-09-28",
+      "supports": [
+        "children up to20",
+        "caption up to2200 characters",
+        "JPEG public URL, containers expire24h",
+        "Current API version v27.0"
+      ],
+      "caveat": "General reference examples use graph.facebook.com; this implementation deliberately uses Instagram Login host graph.instagram.com from the platform guide."
+    },
+    {
+      "url": "https://developers.facebook.com/documentation/instagram-platform/instagram-graph-api/reference/ig-user/media_publish",
+      "verified": "2026-11-07",
+      "updated": "2026-09-28",
+      "supports": [
+        "POST user_id/media_publish with creation_id",
+        "Returns published media id",
+        "May return config_issue CAPTION_NOT_ATTACHED even though publication happened"
+      ]
+    },
+    {
+      "url": "https://developers.facebook.com/documentation/instagram-platform/instagram-api-with-instagram-login/get-started",
+      "verified": "2026-11-07",
+      "supports": [
+        "GET graph.instagram.com/v27.0/me?fields=user_id,username identifies the authenticated professional account"
+      ]
+    },
+    {
+      "url": "https://developers.facebook.com/documentation/instagram-platform/instagram-graph-api/reference/ig-user/content_publishing_limit",
+      "verified": "2026-11-07",
+      "supports": [
+        "GET account content_publishing_limit",
+        "Fields quota_usage, config with quota_total and quota_duration"
+      ]
+    }
+  ]
+}
