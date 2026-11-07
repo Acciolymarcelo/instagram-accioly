@@ -3,8 +3,8 @@ name: Publicador Accioly
 # Publicar requer a variável explícita; preflight manual funciona antes da ativação.
 on:
   schedule:
-    # UTC: 12h, 16h and 20h in America/Sao_Paulo.
-    - cron: '0 15,19,23 * * *'
+    # UTC: 12h, 16h e 20h em America/Sao_Paulo, com reservas dentro da janela de 15 minutos.
+    - cron: '0,6,11 15,19,23 * * *'
   workflow_dispatch:
     inputs:
       operation:
