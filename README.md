@@ -2,6 +2,8 @@
 
 Publicador dos cinco carrosséis aprovados de **@acciolymarceloo**, com as imagens finais, legendas e calendário. Executa pela API oficial do Instagram e pelo GitHub Actions, sem servidor contratado.
 
+**Retomando em outra sessão? Leia [CONTINUAR-AQUI.md](CONTINUAR-AQUI.md).**
+
 **Arquivos enviados ao GitHub; publicação desativada. A conexão direta com a Meta ainda precisa ser configurada e validada.** A conexão do Metricool não transfere sua autorização para este aplicativo. [Guia curto para conectar a conta](CONEXAO-META.txt).
 
 ## Conteúdo e calendário
