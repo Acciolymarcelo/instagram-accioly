@@ -100,7 +100,12 @@
     "02-musculo": {
       "state": "processing",
       "content_sha256": "b267a865a54835d4ba50f3ec4a287259687e6cbd689d13840c8a25f5d5963ac2",
-      "operations": {},
+      "operations": {
+        "child_01": {
+          "status": "pending",
+          "started_at": "2026-11-07T19:03:23.615191+00:00"
+        }
+      },
       "started_at": "2026-11-07T19:03:21.962135+00:00"
     }
   }
