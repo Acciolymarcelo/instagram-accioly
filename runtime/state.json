@@ -412,7 +412,7 @@
       "permalink": "https://www.instagram.com/p/DfdUrekjX59/"
     },
     "05-refeicoes": {
-      "state": "processing",
+      "state": "published",
       "content_sha256": "b769ef295ca5556ffccb101479c1d8b56aaff16c9249d63a5ef957f3e327a786",
       "operations": {
         "child_01": {
@@ -521,7 +521,11 @@
         "17958141414272549",
         "17958141438272549"
       ],
-      "carousel_id": "17958141459272549"
+      "carousel_id": "17958141459272549",
+      "media_id": "18144539203613457",
+      "published_at": "2026-11-08T15:05:12.487368+00:00",
+      "publication_confirmation": "media_publish_returned_id",
+      "readback_verified": false
     }
   }
 }
