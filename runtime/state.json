@@ -531,7 +531,12 @@
     "03-manutencao": {
       "state": "processing",
       "content_sha256": "51ea2e6a425be312264ce5e4e2068d946c27ae06d657496702a58a8bea2df70d",
-      "operations": {},
+      "operations": {
+        "child_01": {
+          "status": "pending",
+          "started_at": "2026-11-08T19:03:24.509117+00:00"
+        }
+      },
       "started_at": "2026-11-08T19:03:22.575565+00:00"
     }
   }
