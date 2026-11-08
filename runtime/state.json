@@ -529,7 +529,7 @@
       "permalink": "https://www.instagram.com/p/DffCXAjlEgg/"
     },
     "03-manutencao": {
-      "state": "processing",
+      "state": "published",
       "content_sha256": "51ea2e6a425be312264ce5e4e2068d946c27ae06d657496702a58a8bea2df70d",
       "operations": {
         "child_01": {
@@ -622,7 +622,11 @@
         "17958174597272549",
         "17958174615272549"
       ],
-      "carousel_id": "17958174639272549"
+      "carousel_id": "17958174639272549",
+      "media_id": "18133704487801784",
+      "published_at": "2026-11-08T19:05:12.236102+00:00",
+      "publication_confirmation": "media_publish_returned_id",
+      "readback_verified": false
     }
   }
 }
