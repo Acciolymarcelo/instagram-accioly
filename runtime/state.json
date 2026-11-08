@@ -527,6 +527,12 @@
       "publication_confirmation": "media_publish_returned_id",
       "readback_verified": true,
       "permalink": "https://www.instagram.com/p/DffCXAjlEgg/"
+    },
+    "03-manutencao": {
+      "state": "processing",
+      "content_sha256": "51ea2e6a425be312264ce5e4e2068d946c27ae06d657496702a58a8bea2df70d",
+      "operations": {},
+      "started_at": "2026-11-08T19:03:22.575565+00:00"
     }
   }
 }
