@@ -1,9 +1,5 @@
 #!/usr/bin/env python3
-"""Instagram Login carousel publisher. Local/dry-run by default; no scheduler installed.
-
-All external mutations require run-due --execute and an explicit lateness window.
-Credentials come only from environment variables and are never written or printed.
-"""
+"""Validate the archived Instagram carousel batch and simulate its schedule locally."""
 from __future__ import annotations
 
 import argparse
@@ -680,32 +676,18 @@ def main():
     parser.add_argument('--manifest', type=Path, default=ROOT / 'manifest.json')
     parser.add_argument('--media-urls', type=Path, default=ROOT / 'media-urls.json')
     parser.add_argument('--state', type=Path, default=ROOT / 'runtime/state.json')
-    parser.add_argument('--execute', action='store_true')
+    parser.add_argument('--execute', action='store_true', help=argparse.SUPPRESS)
     parser.add_argument('--max-lateness-seconds', type=int)
-    parser.add_argument('--state-sync-command', help='Trusted local command as JSON argv; one argument must be {state}.')
-    parser.add_argument('--require-state-sync', action='store_true', help='Fail closed if --execute has no durable checkpoint hook.')
     args = parser.parse_args()
+    if args.execute:
+        raise PublisherError('Live Meta access is disabled. This publisher only supports local validation and simulation.')
     if args.command == 'prepare':
-        if args.execute:
-            raise PublisherError('prepare is local only; omit --execute.')
         result = prepare(args.inventory, args.calendar, args.manifest, args.media_urls)
     else:
         manifest, media = read_json(args.manifest), read_json(args.media_urls)
-        hook = state_sync_hook(args.state_sync_command)
-        if args.command == 'run-due' and args.execute and args.require_state_sync and hook is None:
-            raise PublisherError('This executor requires --state-sync-command for durable publication checkpoints.')
-        result = (preflight(manifest, media, args.execute) if args.command == 'preflight' else
-                  run_due(manifest, media, args.state, execute=args.execute, lateness=args.max_lateness_seconds, on_save=hook))
+        result = (preflight(manifest, media) if args.command == 'preflight' else
+                  run_due(manifest, media, args.state, lateness=args.max_lateness_seconds))
     print(json.dumps(result, ensure_ascii=False, indent=2))
-    if args.execute:
-        if args.command == 'preflight' and not result.get('ready'):
-            return 3
-        if args.command == 'run-due' and any(
-            p.get('state') in ('failed', 'uncertain', 'expired_window') or
-            (p.get('state') == 'published' and p.get('readback_verified') is False)
-            for p in result.get('pieces', [])
-        ):
-            return 3
     return 0
 
 

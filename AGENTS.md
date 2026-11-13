@@ -1,14 +1,8 @@
-# Continuidade do Instagram Accioly
+# Instagram Accioly
 
-Leia `CONTINUAR-AQUI.md` antes de executar ações neste projeto. O objetivo atual é concluir a conexão direta com a Meta e ativar a publicação dos cinco carrosséis já produzidos.
+Este repositório é o arquivo do lote de 7 e 8 de novembro de 2026. Leia [CONTINUAR-AQUI.md](CONTINUAR-AQUI.md) para consultar o estado histórico.
 
-- O usuário prefere iniciar as próximas sessões no computador local e utilizar o Chrome já autenticado. Confirme o ambiente e a disponibilidade real do navegador; não afirme ter visto abas que não foram disponibilizadas. A escolha do ambiente é feita no aplicativo, não por este arquivo.
-- A configuração, publicação dos cinco carrosséis e automação foram autorizadas. Aproveite essa autorização e as decisões registradas; solicite participação apenas para um bloqueio real, como login, 2FA ou acesso indisponível.
-- Preserve os 60 JPEGs, a ordem, as cinco legendas e os hashes. Não recrie conteúdo nem reduza carrosséis para caber em ferramentas com limite menor.
-- Não exponha tokens, cookies, senhas ou fotos pessoais de referência no repositório público. Credenciais pertencem aos campos protegidos/Secrets.
-- Não ative publicações antes de verificar conta, mídia, datas e conexão real. O calendário é datado; nunca execute publicações vencidas automaticamente.
-- Consulte o estado remoto antes de publicar. Não apague `runtime/state.json` para contornar uma falha ou repetir um envio incerto.
-- Um pacote privado de transferência pode conter o contexto editorial, skills, pesquisa e arquivos de produção. Mantenha esse material fora do GitHub público. As conexões de apps e sessões autenticadas precisam estar disponíveis na nova sessão.
-- Distinga sempre: preparado, autorizado, configurado, publicado e confirmado pela API. Testes simulados não comprovam conexão ou postagem real.
-
-Não há servidor pago a contratar. A solução prevista utiliza este repositório público, GitHub Actions e a API oficial do Instagram.
+- Marcelo publica e agenda manualmente no Instagram ou no Meta Business Suite. O assistente entrega a mídia, a legenda e o horário prontos para ele.
+- Use este repositório para consulta, validação e simulação locais. Preserve o manifesto, os JPEGs, as legendas e `runtime/state.json`. O workflow de validação confere os arquivos e roda os testes sem acessar a conta. Mantenha o pacote de produção privado fora do GitHub público.
+- Mantenha a automação desativada. Não use a sessão autenticada de Marcelo para automação de navegador ou desktop. Não recrie o workflow de publicação, o agendador local ou a credencial do GitHub, nem transfira a publicação para outro script, conta, API ou conector.
+- Se a Meta indicar restrição, verificação ou erro, informe o que foi observado. Marcelo acompanha o aviso e o recurso no canal oficial. Qualquer mudança futura no modo de operar exige decisão explícita de Marcelo e verificação da rota, do escopo e da autorização da Meta.

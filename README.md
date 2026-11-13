@@ -1,10 +1,10 @@
 # Instagram Accioly
 
-Publicador dos cinco carrosséis aprovados de **@acciolymarceloo**, com as imagens finais, legendas e calendário. Executa pela API oficial do Instagram e pelo GitHub Actions, sem servidor contratado.
+Arquivo dos cinco carrosséis de **@acciolymarceloo** publicados pela API do Instagram em 7 e 8 de novembro de 2026, com as imagens finais, legendas e calendário original.
 
 **Retomando em outra sessão? Leia [CONTINUAR-AQUI.md](CONTINUAR-AQUI.md).**
 
-**Arquivos enviados ao GitHub; publicação desativada. A conexão direta com a Meta ainda precisa ser configurada e validada.** A conexão do Metricool não transfere sua autorização para este aplicativo. [Guia curto para conectar a conta](CONEXAO-META.txt).
+**A publicação automática foi desativada.** Marcelo agenda e publica manualmente no Instagram ou no Meta Business Suite.
 
 ## Conteúdo e calendário
 
@@ -20,26 +20,10 @@ Horário de Brasília (`America/Sao_Paulo`).
 
 As legendas completas e a ordem dos slides estão em [manifest.json](manifest.json). As 60 imagens estão em [media](media/). Os endereços públicos utilizados pelo Instagram ficam em [media-urls.json](media-urls.json), fixados a uma versão das imagens.
 
-## Ativação única
-
-1. Autorizar a conta profissional no aplicativo Meta usando **Instagram API with Unified Login** e gerar um **System-user access token (SUAT)** com acesso à conta e à publicação. [Guia oficial da Meta](https://developers.facebook.com/documentation/instagram-platform/instagram-api-with-unified-login/get-started).
-2. Cadastrar o SUAT apenas como **repository secret** `IG_ACCESS_TOKEN`. O executor consulta as contas do token e exige um único resultado para `acciolymarceloo`. Se fornecido, `IG_USER_ID` deve coincidir com o ID desse resultado. [Actions secrets](https://github.com/Acciolymarcelo/instagram-accioly/settings/secrets/actions).
-3. Em [Actions](https://github.com/Acciolymarcelo/instagram-accioly/actions), executar **Publicador Accioly → Run workflow → preflight**. É uma conferência somente de leitura da conta, limite da API e de cada imagem pública.
-4. Com o preflight aprovado e as datas ainda futuras, cadastrar `ACCIOLY_PUBLISHING_ENABLED` com valor `true` em [Actions variables](https://github.com/Acciolymarcelo/instagram-accioly/settings/variables/actions).
-
-O agendador chama o executor diariamente às 12h, 16h e 20h de Brasília. Só publica peças existentes no manifesto, na data e no horário delas. Não existe sexta peça neste lote. GitHub Actions pode iniciar com atraso; uma peça com mais de 15 minutos de atraso fica bloqueada para revisão. Datas vencidas precisam ser reagendadas antes da ativação.
-
-Para pausar, definir `ACCIOLY_PUBLISHING_ENABLED=false`. Isso impede novas execuções de publicação; uma execução já iniciada deve ser cancelada na página Actions.
-
-## Conferência e continuidade
+## Conferência do arquivo
 
 - **Validar publicador e carrosséis** roda testes sem credenciais e confere os hashes dos arquivos em cada alteração relevante.
-- **Publicador Accioly** confere conta, imagens, legenda, ordem, data e limite da API antes da publicação.
-- O resultado de cada operação fica em `runtime/state.json`, sincronizado no repositório antes de ações irreversíveis. Esse estado contém IDs operacionais, nunca o token, e impede publicação duplicada após falhas.
-- Após publicar, o executor consulta o resultado real. Um retorno incerto bloqueia a repetição automática e requer análise.
-- Novos lotes exigem atualizar o manifesto e conciliar o estado existente; não apagar o estado para forçar uma nova tentativa.
-
-O token Meta tem validade e pode ser revogado; esta versão não implementa renovação automática. Quando necessário, renovar a conexão e substituir o secret. O projeto público usa runners padrão do GitHub Actions, sem contratação de hospedagem. [Regras de cobrança do GitHub](https://docs.github.com/en/billing/concepts/product-billing/github-actions).
+- [runtime/state.json](runtime/state.json) guarda os horários efetivos, identificadores e permalinks das cinco publicações confirmadas.
 
 ## Desenvolvimento
 
@@ -52,4 +36,4 @@ python3 publisher.py preflight
 python3 publisher.py run-due --max-lateness-seconds 900
 ```
 
-Os dois últimos comandos são locais e não publicam. A verificação real, somente leitura, usa `IG_LOGIN_MODE=unified IG_GRAPH_VERSION=v27.0 python3 publisher.py preflight --execute`, com `IG_ACCESS_TOKEN` disponível no ambiente. O workflow é a forma prevista de publicação, pois sincroniza o estado durável a cada etapa. Fotos pessoais de referência, fontes de pesquisa e credenciais não integram este repositório.
+Os dois últimos comandos usam os arquivos locais para conferir a mídia e simular o calendário. O acesso à Meta pela linha de comando está desativado.

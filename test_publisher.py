@@ -1,5 +1,4 @@
 import copy
-import contextlib
 import datetime as dt
 import io
 import json
@@ -347,25 +346,29 @@ class PublisherTests(unittest.TestCase):
             self.assertEqual(run.call_args.args[0][-1], str(Path('/tmp').resolve() / 'state.json'))
             self.assertNotIn('shell', run.call_args.kwargs)
 
-    def test_reconciled_unverified_publication_returns_nonzero(self):
+    def test_reconciled_unverified_publication_does_not_write(self):
         manifest = {'account': p.EXPECTED_ACCOUNT, 'graph_version': 'v27.0', 'pieces': [piece(2)]}
         fake = FakeGraph(count=2)
         fake.parent, fake.did_publish = '555', True
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
-            p.private_json(root / 'manifest.json', manifest)
-            p.private_json(root / 'media.json', {})
             with p.locked_state(root / 'state.json', manifest) as (st, save):
                 st['pieces']['test-piece'] = {'state': 'uncertain', 'carousel_id': '555',
                                               'operations': {'publish': {'status': 'pending'}}}
                 save()
-            argv = ['publisher.py', 'run-due', '--execute', '--max-lateness-seconds', '900',
-                    '--manifest', str(root / 'manifest.json'), '--media-urls', str(root / 'media.json'),
-                    '--state', str(root / 'state.json')]
-            with patch('sys.argv', argv), patch('publisher.client_from_env', return_value=fake), contextlib.redirect_stdout(io.StringIO()):
-                code = p.main()
-            self.assertEqual(code, 3)
+            report = p.run_due(manifest, {}, root / 'state.json', execute=True, lateness=900, client=fake)
+            self.assertTrue(report['pieces'][0]['reconciled_read_only'])
+            self.assertFalse(report['pieces'][0]['readback_verified'])
             self.assertTrue(all(x[0] == 'GET' for x in fake.calls))
+
+    def test_cli_blocks_live_access_before_reading_configuration(self):
+        for command in ('prepare', 'preflight', 'run-due'):
+            with self.subTest(command=command), patch('sys.argv', ['publisher.py', command, '--execute']), \
+                    patch('publisher.read_json') as read_config, patch('publisher.client_from_env') as build_client:
+                with self.assertRaisesRegex(p.PublisherError, 'Live Meta access is disabled'):
+                    p.main()
+                read_config.assert_not_called()
+                build_client.assert_not_called()
 
 
 if __name__ == '__main__':
